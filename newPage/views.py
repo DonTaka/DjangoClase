@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Usuario, tipoUsuario
+from .forms import UsuarioForm
 
 # Create your views here.
 
@@ -107,6 +108,12 @@ def userUpdate(request):
         usuarios = Usuario.objects.all()
         context = {"usuario": usuarios}
         return render(request, "pages/user_list.html", context)
+
+
+def formAdd(request):
+    form = UsuarioForm()
+    context = {"form": form}
+    return render(request, "pages/formAdd.html", context)
 
 
 def juegos(request):

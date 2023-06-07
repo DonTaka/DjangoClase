@@ -8,5 +8,6 @@ urlpatterns = [
     path("userDel/ <str:pk>", views.userDel, name="userDel"),
     path("userEdit/ <str:pk>", views.userEdit, name="userEdit"),
     path("userUpdate", views.userUpdate, name="userUpdate"),
+    path("formAdd", views.formAdd, name="formAdd"),
     path("juegos", views.juegos, name="juegos"),
 ]

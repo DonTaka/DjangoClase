@@ -7,10 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     {% load bootstrap5 %}
+    {% load static %}
     {% bootstrap_css%}
     {% bootstrap_javascript%}
-    {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css'%}">
+    <script src='{% static 'js/functions.js' %}'></script>
 </head>
 
 <body>
@@ -20,7 +21,7 @@
         <div id="carouselExample" class="carousel slide">
             <div class="carousel-inner" id="carusel">
                 <div class="carousel-item active">
-                    <img src="{% static 'img/wow.jpg'%}" class="d-block w-100" alt="...">
+                    <img src="{% static 'img/wow.jpg' %}" class="d-block w-100" alt="...">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -43,7 +44,7 @@
     //https://api.rawg.io/api/games?key=13477c9d3719415692a314047a845263
 
     $(document).ready(function () {
-        $.get("https://api.rawg.io/api/games?key=13477c9d3719415692a314047a845263&genres=action&platform=pc&page=1",
+        $.get("https://api.rawg.io/api/games?key=13477c9d3719415692a314047a845263&genres=action&platform=pc&page=3",
             function (data) {
                 $.each(data.results, function (i, item) {
                     console.log(item.name)
