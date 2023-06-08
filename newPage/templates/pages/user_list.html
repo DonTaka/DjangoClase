@@ -23,6 +23,9 @@
                 <a href="{% url 'userAdd' %}">
                     <button type="button" class="btn btn-primary">Agregar</button>
                 </a>
+                <a href="{% url 'crudTipo' %}">
+                    <button type="button" class="btn btn-primary">Ver Tipos de Usuario</button>
+                </a>
                 <div id="idMensajes">
                     {% if mensaje %}
                     {{mensaje}}

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Usuario, tipoUsuario
-from .forms import UsuarioForm
+from .forms import UsuarioForm, tipoForm
 
 # Create your views here.
 
@@ -119,3 +119,55 @@ def formAdd(request):
 def juegos(request):
     context = {}
     return render(request, "pages/apiVideojuegos.html", context)
+
+
+def crudTipo(request):
+    tipos = tipoUsuario.objects.all()
+    context = {"tipo": tipos}
+    return render(request, "pages/tipo_list.html", context)
+
+
+def tipoAdd(request):
+    if request.method != "POST":
+        tipo = tipoForm()
+        context = {"tipo": tipo}
+        return render(request, "pages/tipo_add.html", context)
+    else:
+        form = tipoForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+            form = tipoForm()
+
+            context = {"mensaje": "OK Agregado con exito", "tipo": form}
+            return render(request, "pages/tipo_add.html", context)
+
+
+def tipoDel(request, pk):
+    if pk != "":
+        tipo = tipoUsuario.objects.get(idTipoUsuario=pk)
+        tipo.delete()
+
+        tipos = tipoUsuario.objects.all()
+        context = {"mensaje": "OK Tipo Eliminado", "tipo": tipos}
+        return render(request, "pages/tipo_list.html", context)
+
+
+def tipoEdit(request, pk):
+    try:
+        tipo = tipoUsuario.objects.get(idTipoUsuario=pk)
+        context = {}
+        if request.method != "POST":
+            form = tipoForm(instance=tipo)
+            context = {"form": form}
+            return render(request, "pages/tipo_edit.html", context)
+        else:
+            form = tipoForm(request.POST, instance=tipo)
+            form.save()
+
+            context = {"mensaje": "OK Modificado con exito", "form": form}
+            return render(request, "pages/tipo_edit.html", context)
+    except:
+        tipos = tipoUsuario.objects.all()
+        context = {"mensaje": "Error, Tipo no encontrado...", "tipo": tipos}
+        return render(request, "pages/tipo_list.html", context)
