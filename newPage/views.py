@@ -171,3 +171,22 @@ def tipoEdit(request, pk):
         tipos = tipoUsuario.objects.all()
         context = {"mensaje": "Error, Tipo no encontrado...", "tipo": tipos}
         return render(request, "pages/tipo_list.html", context)
+
+
+def login(request):
+    if request.method != "POST":
+        context = {}
+        return render(request, "pages/login.html", context)
+    else:
+        username = request.POST["username"]
+        password = request.POST["password"]
+        print(f"Usuario: {username} \t Contraseña: {password}")
+        context = {}
+        if username == "jo.riquelmee" and password == "pass1234":
+            request.session["nombreUsuario"] = username
+            usuarios = Usuario.objects.all()
+            context = {"usuario": usuarios}
+            return render(request, "pages/user_list.html", context)
+        else:
+            context = {"mensaje": "Usuario y/o Contraseña incorrectas"}
+            return render(request, "pages/login.html", context)

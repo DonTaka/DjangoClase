@@ -18,6 +18,12 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-10 p-5 mt-3 mx-auto table-responsive">
+
+                {% if request.session.nombreUsuario %}
+                <div class="text-center mx-auto h1 fw-bolder">
+                    Bienvenido {{request.session.nombreUsuario}}
+                </div>
+                {% endif%}
                 <h1>Lista de Usuarios</h1><br>
 
                 <a href="{% url 'userAdd' %}">

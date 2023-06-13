@@ -14,4 +14,5 @@ urlpatterns = [
     path("tipoAdd", views.tipoAdd, name="tipoAdd"),
     path("tipoDel/ <str:pk>", views.tipoDel, name="tipoDel"),
     path("tipoEdit/ <str:pk>", views.tipoEdit, name="tipoEdit"),
+    path("", views.login, name="login"),
 ]
