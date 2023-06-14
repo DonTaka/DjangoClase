@@ -3,34 +3,35 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login</title>
     {% load bootstrap5 %}
     {% load static %}
-    {% bootstrap_css %}
+    {% bootstrap_css%}
     {% bootstrap_javascript%}
-
+    <link rel="stylesheet" href="{% static 'css/styles.css'%}">
 </head>
 
 <body>
     <div class="container">
-        <div class="row">
-            <div class="col-lg-6 mt-5 text-center mx-auto fw-bolder">
+        <div class='row'>
+            <div class='col-lg-6 text-center mx-auto fw-bolder p-5'>
+                <h1>Login de Acceso</h1>
+
                 <form action="" method='POST'>
                     {% csrf_token %}
-                    <img src="{% static 'img/test2.gif'%}" class='img-thumbnail w-25 h-50 rounded-circle '
-                        alt="Cargando..."><br>
+                    <img src="{% static 'img/test2.gif'%}" alt="Cargando..."
+                        class='img-thumbnail w-50 h-50 rounded-circle mb-3'><br>
                     <label for="username" class='form-label'>Nombre Usuario</label>
-                    <input type="text" name="username" id="username" class='form-control'
-                        placeholder="Ingrese su Usuario">
-                    <label for="password" class="form-label">Contraseña</label>
-                    <input type="password" name="password" id="password" class='form-control'
-                        placeholder="Ingrese su contraseña"><br>
-                    <input type="submit" value="Conectar" class='btn btn-success'>
-                </form><br>
+                    <input type="text" class='form-control' name='username' id='username'
+                        placeholder='Ingrese su usuario'><br>
+                    <label for="password" class='form-label'>Contraseña</label>
+                    <input type="password" class='form-control' name='password' id='password'
+                        placeholder='Ingrese su contraseña'><br>
+                    <input type="submit" value='Conectar' class='btn btn-success'>
 
-                {% if mensaje %}
+                </form>
+                {% if mensaje%}
                 {{mensaje}}
                 {% endif%}
             </div>

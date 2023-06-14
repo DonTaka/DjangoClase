@@ -174,19 +174,26 @@ def tipoEdit(request, pk):
 
 
 def login(request):
+    context = {}
     if request.method != "POST":
-        context = {}
         return render(request, "pages/login.html", context)
     else:
         username = request.POST["username"]
         password = request.POST["password"]
-        print(f"Usuario: {username} \t Contraseña: {password}")
-        context = {}
+        # print(f"Usuario: {username} \t Contraseña: {password}")
+        # Reemplazar 'jo.riquelmee' por dato de la BDD
+        # usuario = Usuario.objects.get(correo=username)
         if username == "jo.riquelmee" and password == "pass1234":
             request.session["nombreUsuario"] = username
             usuarios = Usuario.objects.all()
             context = {"usuario": usuarios}
             return render(request, "pages/user_list.html", context)
         else:
-            context = {"mensaje": "Usuario y/o Contraseña incorrectas"}
+            context = {"mensaje": "Usuario y/o Contraseña erronea"}
             return render(request, "pages/login.html", context)
+
+
+def logout(request):
+    del request.session["nombreUsuario"]
+    context = {"mensaje": "Usuario Desconectado"}
+    return render(request, "pages/login.html", context)

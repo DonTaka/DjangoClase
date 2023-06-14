@@ -17,20 +17,22 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-lg-10 p-5 mt-3 mx-auto table-responsive">
+            <div class="col-lg-10 p-5 mt-3 mx-auto text-center table-responsive">
 
-                {% if request.session.nombreUsuario %}
-                <div class="text-center mx-auto h1 fw-bolder">
-                    Bienvenido {{request.session.nombreUsuario}}
+                <h1>Lista de Usuarios</h1><br>
+                {% if request.session.nombreUsuario%}
+                <div class='h2 fw-bold mb-3'>
+                    Bienvenido {{request.session.nombreUsuario}} <br>
                 </div>
                 {% endif%}
-                <h1>Lista de Usuarios</h1><br>
-
                 <a href="{% url 'userAdd' %}">
                     <button type="button" class="btn btn-primary">Agregar</button>
                 </a>
                 <a href="{% url 'crudTipo' %}">
                     <button type="button" class="btn btn-primary">Ver Tipos de Usuario</button>
+                </a>
+                <a href="{% url 'logout' %}">
+                    <button type="button" class="btn btn-danger">Desconectar</button>
                 </a>
                 <div id="idMensajes">
                     {% if mensaje %}

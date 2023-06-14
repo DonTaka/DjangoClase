@@ -15,4 +15,5 @@ urlpatterns = [
     path("tipoDel/ <str:pk>", views.tipoDel, name="tipoDel"),
     path("tipoEdit/ <str:pk>", views.tipoEdit, name="tipoEdit"),
     path("", views.login, name="login"),
+    path("logout", views.logout, name="logout"),
 ]
